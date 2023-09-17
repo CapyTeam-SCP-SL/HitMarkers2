@@ -1,10 +1,14 @@
-# HitMarkers
-### A simple plugin to show hints when attacking a player with damage numbers, and making the hitmarker larger
-[![Github All Releases](https://img.shields.io/github/downloads/DentyTxR/HitMarkers/total.svg)]()
+[![HitMarkers 2](https://media.discordapp.net/attachments/1081923284133752903/1152937925223387256/unknown.png)](https://github.com/TranquilityStudio/HitMarkers2)
+[![Downloads](https://img.shields.io/github/downloads/TranquilityStudio/HitMarkers2/total?style=for-the-badge&label=DOWNLOADS&color=00b300)](https://github.com/TranquilityStudio/HitMarkers2/releases)
+[![Version](https://img.shields.io/github/v/tag/TranquilityStudio/HitMarkers2?style=for-the-badge&label=VERSION)](https://github.com/TranquilityStudio/HitMarkers2/releases)
 
+# HitMarkers 2
+### HitMarkers 2 is simple plugin to show hints when attacking a player with damage numbers, and making the hitmarker larger
 
-### How do I download this?
-  - Go here and download the latest release, https://github.com/DentyTxR/HitMarkers/releases
+### What is the difference between HitMarkers 2 and the original version of the plugin?
+  - In version 2.1.0, many new features will be added to HitMarkers 2 that improve the original plugin. You can follow the development in the CapyTeam discord (Link will appear soon)
+
+# Configuring the plugin.
 
 ### Configs
 
@@ -59,3 +63,7 @@ These are for `hint_target_message` config
 | `%AttackerRole%` | Attacker role |
 | `%Damage%` | Damage delt |
 | `\n` | Makes a linebreak in the hint |
+
+# Credits
+- Plugin made by Sakred_
+- Original HitMarkers plugin by [DentyTxR] (https://github.com/DentyTxR)
