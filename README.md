@@ -1,5 +1,5 @@
 [![HitMarkers 2](https://media.discordapp.net/attachments/1081923284133752903/1152937925223387256/unknown.png)](https://github.com/TranquilityStudio/HitMarkers2)
-[![Downloads](https://img.shields.io/github/downloads/CapyTeam-SCP-SL/HitMarkers2/total?style=for-the-badge&label=DOWNLOADS&color=00b300)](https://github.com/CapyTeam-SCP-SL/HitMarkers2/releases/tag/2.0.0)
+[![Downloads](https://img.shields.io/github/downloads/CapyTeam-SCP-SL/HitMarkers2/total?style=for-the-badge&label=DOWNLOADS&color=00b300)](https://github.com/CapyTeam-SCP-SL/HitMarkers2/releases/)
 [![Version](https://img.shields.io/github/v/tag/CapyTeam-SCP-SL/HitMarkers2?style=for-the-badge&label=VERSION)](https://github.com/CapyTeam-SCP-SL/HitMarkers2/releases/tag/2.0.0)
 
 # HitMarkers 2
