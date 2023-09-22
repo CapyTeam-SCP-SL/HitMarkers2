@@ -1,6 +1,7 @@
 [![HitMarkers 2](https://media.discordapp.net/attachments/1081923284133752903/1152937925223387256/unknown.png)](https://github.com/TranquilityStudio/HitMarkers2)
+[![Discord](https://img.shields.io/discord/1143547375546290249?style=for-the-badge&label=DISCORD&color=blue)](https://discord.gg/ETPEH9Ahma)
 [![Downloads](https://img.shields.io/github/downloads/CapyTeam-SCP-SL/HitMarkers2/total?style=for-the-badge&label=DOWNLOADS&color=00b300)](https://github.com/CapyTeam-SCP-SL/HitMarkers2/releases/)
-[![Version](https://img.shields.io/github/v/tag/CapyTeam-SCP-SL/HitMarkers2?style=for-the-badge&label=VERSION)](https://github.com/CapyTeam-SCP-SL/HitMarkers2/releases/tag/2.0.0)
+[![Version](https://img.shields.io/github/v/tag/CapyTeam-SCP-SL/HitMarkers2?style=for-the-badge&label=VERSION&color=ff4f00)](https://github.com/CapyTeam-SCP-SL/HitMarkers2/releases/tag/2.0.0)
 
 # HitMarkers 2
 ### HitMarkers 2 is simple plugin to show hints when attacking a player with damage numbers, and making the hitmarker larger
