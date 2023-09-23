@@ -45,10 +45,13 @@ namespace HitMarkers2
         public bool EnableScpHints { get; set; } = true;
         [Description("Should Friendly Fire Warning be displayed?")]
         public bool EnableFriendlyFireWarning { get; set; } = true;
+
         [Description("Hint message for Friendly Fire Warning")]
         public string FriendlyFireWarningMessage { get; set; } = @"%DamageHint%\n<size=34><color=yellow>Warning. Try not to hurt your teammates.</color></size>";
+        
         [Description("Hint duration for Friendly Fire Warning message")]
         public float FriendlyFireWarningHintDuration { get; set; } = 1f;
+
         [Description("Size of custom hitmarker (leave 1 for default)")]
         public float HitMarkerSize { get; set; } = 1f;
     }
