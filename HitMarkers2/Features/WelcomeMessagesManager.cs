@@ -1,11 +1,11 @@
-﻿using Exiled.Loader;
-using System;
-using System.Xml.Linq;
+﻿using System;
 
 namespace HitMarkers2
 {
-    public static class WelcomeMessages
+    public static class WelcomeMessagesManager
     {
+        #region Messages
+
         public static string Default => @"
 ██╗░░██╗██╗████████╗███╗░░░███╗░█████╗░██████╗░██╗░░██╗███████╗██████╗░░██████╗  ██████╗░
 ██║░░██║██║╚══██╔══╝████╗░████║██╔══██╗██╔══██╗██║░██╔╝██╔════╝██╔══██╗██╔════╝  ╚════██╗
@@ -78,25 +78,25 @@ namespace HitMarkers2
   '.   ____/      █▄▀ ██▄ █▄█ █▄█ █▄█ █░▀░█ █▄█ █▄▀ ██▄                                    ▀▄▀ █▄ ▄ ░█ ▄ ░█
    | -|-|_
    |____)_)";
-        public static string GetMessage()
+
+        #endregion
+
+        public static string GetWelcomeMessage(bool isDebug = false)
         {
-            if (UnityEngine.Random.Range(1,10) == 10)
-                return EasterEgg;
-            if (DateTime.Today.Month == 10)
-                return Halloween;
-            if (DateTime.Today.Month == 12)
-                return Christmas;
-            else
-                return Default;
-        }
-        public static string GetDebugMessage()
-        {
-            if (UnityEngine.Random.Range(1, 10) == 10)
-                return EasterEggDebug;
-            if (DateTime.Today.Month == 12)
-                return ChristmasDebug;
-            else
-                return DefaultDebug;
+            var isEasterEgg = UnityEngine.Random.Range(1, 10) == 10;
+            var curMonth = DateTime.Today.Month;
+
+            if (isDebug)
+            {
+                return isEasterEgg ? EasterEggDebug
+                    : curMonth == 12 ? ChristmasDebug
+                    : DefaultDebug;
+            }
+
+            return isEasterEgg ? EasterEgg
+                : curMonth == 10 ? Halloween
+                : curMonth == 12 ? Christmas
+                : Default;
         }
     }
 }
