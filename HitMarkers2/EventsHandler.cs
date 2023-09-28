@@ -69,7 +69,12 @@ namespace HitMarkers2
                 ev.Player.ShowHint(message, _config.TargetTakedDamageHint.Duration);
             }
 
-            if (!(ev.Attacker.IsScp && _config.IsHitMakerEnabledForScp) && _config.HitMarkerSize > 1)
+            if (ev.Attacker.IsScp && !_config.IsHitMakerEnabledForScp)
+            {
+                return;
+            }
+            
+            if (_config.HitMarkerSize > 1)
             {
                 ev.Attacker.ShowHitMarker(_config.HitMarkerSize);
             }
