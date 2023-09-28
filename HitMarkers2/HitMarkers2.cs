@@ -1,6 +1,7 @@
 ﻿using System;
 using Exiled.API.Features;
 using Exiled.Loader.Features;
+using UnityEngine;
 
 using Player = Exiled.Events.Handlers.Player;
 
@@ -27,11 +28,18 @@ namespace HitMarkers2
             EventHandler = new EventHandler();
             _config = Config;
 
+            UnityEngine.Random.Range(1, 10);
+
             Player.Hurting += EventHandler.HurtingEvent;
             Player.Dying += EventHandler.DyingEvent;
 
-            if(_config.EnableWelcomeMessage)
+            if (_config.Debug == false && _config.EnableWelcomeMessage)
+            {
                 ServerConsole.AddLog($"Welcome to {WelcomeMessages.GetMessage()}", ConsoleColor.Green);
+            
+            }
+            if (_config.Debug == true && _config.EnableWelcomeMessage)
+                ServerConsole.AddLog($"Welcome to {WelcomeMessages.GetDebugMessage()}", ConsoleColor.DarkYellow);
 
             base.OnEnabled();
         }
