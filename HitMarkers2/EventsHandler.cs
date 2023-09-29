@@ -56,6 +56,10 @@ namespace HitMarkers2
             var message = DoReplace(_config.AttackerDamagedTargetHint.Message);
 
             // For attacker
+            if (!Server.FriendlyFire && ev.Attacker.Role.Side == ev.Player.Role.Side)
+            {
+                return;
+            }
             if (_config.WarningOnFriendlyFireHint.IsEnabled && ev.DamageHandler.IsFriendlyFire)
             {
                 message = DoReplace(_config.WarningOnFriendlyFireHint.Message)
