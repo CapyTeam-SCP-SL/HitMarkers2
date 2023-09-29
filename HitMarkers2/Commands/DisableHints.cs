@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace HitMarkers2.Commands
 {
+    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     internal class DisableHints : ICommand
     {
         public string Command { get; } = "disableHints";
@@ -46,6 +47,7 @@ namespace HitMarkers2.Commands
         }
     }
 
+    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     internal class EnableHints : ICommand
     {
         public string Command { get; } = "enableHints";
