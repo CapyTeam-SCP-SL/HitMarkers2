@@ -1,48 +1,87 @@
 ﻿using CommandSystem;
-using Exiled.API.Features;
-using Exiled.Permissions.Extensions;
+using HitMarkers2.Features;
 using System;
-using UnityEngine;
-
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace HitMarkers2.Commands
 {
-    [CommandHandler(typeof(GameConsoleCommandHandler))]
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
-    public class DisableHints : ParentCommand
+    internal class DisableHints : ICommand
     {
-        public DisableHints() => LoadGeneratedCommands();
-        public string Command => "disablehints";
-        public override string[] Aliases { get; } = new string[] { "dis", "disablehi" };
-        public string Description => "Disables or enables HitMarkers.";
-        public override void LoadGeneratedCommands() { }
+        public string Command { get; } = "disableHints";
+        public string[] Aliases { get; } = null;
+        public string Description { get; } = "Disables hints globally for one round if they are enabled in the config, does nothing if they are already disabled.\nProvide with player ID to disable hints specifically for them for one round.";
 
-        public override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!((CommandSender)sender).CheckPermission("ev.run"))
+            if (arguments.Count == 0)
             {
-                response = "<color=red>You do not have permission to use this command!</color>";
-                return false;
+                HintToggleManager.de();
+                response = "success, globally disabled!";
+                return true;
             }
-            if (arguments.Count < 1)
+            else
             {
-                response = "Usage: disablehints ((hint name/id) or (all / *))" + "\disablehints hintlist";
-                return false;
-            }
-            switch (arguments.At(0))
-            {
-                case "*":
-                case "all":
-                    if (arguments.Count < 1)
+                try
+                {
+                    var player = Exiled.API.Features.Player.List.FirstOrDefault(pl => pl.Id == int.Parse(arguments.At(0)));
+                    if (player is null)
                     {
-                        response = "Usage: disablehints ((hint name/id) or (all / *))";
+                        response = "player does not exist.";
                         return false;
                     }
-                    if (!Enum.TryParse(arguments.At(1), true, out ItemType item))
+
+                    HintToggleManager.de(player.UserId);
+                    response = "success, individually disabled!";
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    response = $"uh oh, something went horribly wrong. {ex.Message}.";
+                    return false;
+                }
+            }
+        }
+    }
+
+    [CommandHandler(typeof(RemoteAdminCommandHandler))]
+    internal class EnableHints : ICommand
+    {
+        public string Command { get; } = "enableHints";
+        public string[] Aliases { get; } = null;
+        public string Description { get; } = "Disables hints globally for one round if they are enabled in the config, does nothing if they are already disabled.\nProvide with player ID to disable hints specifically for them for one round.";
+
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        {
+            if (arguments.Count == 0)
+            {
+                HintToggleManager.ee();
+                response = "success, globally enabled!";
+                return true;
+            }
+            else
+            {
+                try
+                {
+                    var player = Exiled.API.Features.Player.List.FirstOrDefault(pl => pl.Id == int.Parse(arguments.At(0)));
+                    if (player is null)
                     {
-                        response = $"Invalid : hint name/id{arguments.At(1)}";
+                        response = "player does not exist.";
                         return false;
                     }
+
+                    HintToggleManager.ee(player.UserId);
+                    response = "success, individually enabled!";
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    response = $"uh oh, something went horribly wrong. {ex.Message}.";
+                    return false;
+                }
             }
         }
     }

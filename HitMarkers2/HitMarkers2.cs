@@ -1,19 +1,13 @@
 ﻿using System;
 using Exiled.API.Features;
-using Exiled.Loader.Features;
-using UnityEngine;
-
-using Player = Exiled.Events.Handlers.Player;
 
 namespace HitMarkers2
 {
-
-    public class HitMarkers2 : Plugin<Config>
+    public sealed class HitMarkers2 : Plugin<Config>
     {
-
-        private EventHandler EventHandler;
         public static HitMarkers2 Singleton;
-        Config _config;
+
+        private EventsHandler _eventHandler;
 
         public override string Name { get; } = "HitMarkers 2";
         public override string Author { get; } = "CapyTeam";
@@ -21,25 +15,21 @@ namespace HitMarkers2
         public override Version Version { get; } = new Version(2, 1, 1);
         public override Version RequiredExiledVersion { get; } = new Version(8, 2, 1);
 
-
         public override void OnEnabled()
         {
             Singleton = this;
-            EventHandler = new EventHandler();
-            _config = Config;
+            _eventHandler = new EventsHandler(Config);
 
-            UnityEngine.Random.Range(1, 10);
+            _eventHandler.RegisterEvents();
 
-            Player.Hurting += EventHandler.HurtingEvent;
-            Player.Dying += EventHandler.DyingEvent;
-
-            if (_config.Debug == false && _config.EnableWelcomeMessage)
+            if (Config.IsWelcomeMessageEnabled)
             {
-                ServerConsole.AddLog($"Welcome to {WelcomeMessages.GetMessage()}", ConsoleColor.Green);
-            
+                var color = Config.Debug
+                    ? ConsoleColor.Green
+                    : ConsoleColor.DarkYellow;
+
+                ServerConsole.AddLog($"Welcome to {WelcomeMessagesManager.GetWelcomeMessage(Config.Debug)}", color);
             }
-            if (_config.Debug == true && _config.EnableWelcomeMessage)
-                ServerConsole.AddLog($"Welcome to {WelcomeMessages.GetDebugMessage()}", ConsoleColor.DarkYellow);
 
             base.OnEnabled();
         }
@@ -47,12 +37,10 @@ namespace HitMarkers2
 
         public override void OnDisabled()
         {
-            Player.Hurting -= EventHandler.HurtingEvent;
-            Player.Dying -= EventHandler.DyingEvent;
+            _eventHandler?.UnregisterEvents();
 
-            EventHandler = null;
-            _config = null;
             Singleton = null;
+            _eventHandler = null;
 
             base.OnDisabled();
         }
