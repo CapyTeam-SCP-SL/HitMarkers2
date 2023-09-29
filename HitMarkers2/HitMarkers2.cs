@@ -25,8 +25,8 @@ namespace HitMarkers2
             if (Config.IsWelcomeMessageEnabled)
             {
                 var color = Config.Debug
-                    ? ConsoleColor.Green
-                    : ConsoleColor.DarkYellow;
+                    ? ConsoleColor.DarkYellow
+                    : ConsoleColor.Green;
 
                 ServerConsole.AddLog($"Welcome to {WelcomeMessagesManager.GetWelcomeMessage(Config.Debug)}", color);
             }
