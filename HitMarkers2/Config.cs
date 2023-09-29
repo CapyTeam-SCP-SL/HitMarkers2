@@ -15,6 +15,9 @@ namespace HitMarkers2
         [Description("Should Welcome Message be enabled?")]
         public bool IsWelcomeMessageEnabled { get; set; } = true;
 
+        [Description("Are hints globally enabled by default?")]
+        public bool AreHintsEnabled { get; set; } = true;
+
         [Description("Should hitmarkers be displayed to SCPs?")]
         public bool IsHitMakerEnabledForScp { get; set; } = true;
 

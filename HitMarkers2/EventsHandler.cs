@@ -1,6 +1,7 @@
 ﻿using Exiled.Events.EventArgs.Player;
 using Exiled.API.Features;
 using System;
+using HitMarkers2.Features;
 
 namespace HitMarkers2
 {
@@ -17,12 +18,19 @@ namespace HitMarkers2
         {
             Exiled.Events.Handlers.Player.Hurting += OnHurting;
             Exiled.Events.Handlers.Player.Dying += OnDying;
+            Exiled.Events.Handlers.Server.WaitingForPlayers += OnWaitingForPlayers;
         }
 
         public void UnregisterEvents()
         {
             Exiled.Events.Handlers.Player.Hurting -= OnHurting;
             Exiled.Events.Handlers.Player.Dying -= OnDying;
+            Exiled.Events.Handlers.Server.WaitingForPlayers -= OnWaitingForPlayers;
+        }
+
+        private void OnWaitingForPlayers()
+        {
+            HintToggleManager.domagicthing(_config);
         }
 
         private void OnHurting(HurtingEventArgs ev)
@@ -53,27 +61,35 @@ namespace HitMarkers2
                 message = DoReplace(_config.WarningOnFriendlyFireHint.Message)
                     .Replace("%DamageHint%", message);
 
+                if (!HintToggleManager.ok(ev.Attacker.UserId))
+                    goto e;
+
                 ev.Attacker.ShowHint(message, _config.WarningOnFriendlyFireHint.Duration);
                 Log.Debug($"Player \"{ev.Attacker.Nickname}\" ({ev.Attacker.Role}) hits the teammate \"{ev.Player.Nickname}\" ({ev.Player.Role})! Displaying a warning.");
             }
             else if (_config.AttackerKilledTargetHint.IsEnabled)
             {
+                if (!HintToggleManager.ok(ev.Attacker.UserId))
+                    goto e;
                 ev.Attacker.ShowHint(message, _config.AttackerDamagedTargetHint.Duration);
                 Log.Debug($"Player \"{ev.Attacker.Nickname}\" attacks the player \"{ev.Player.Nickname}\"! {Math.Round(ev.Amount)} damage done");
             }
 
+            e:
             // For Target
             if (_config.TargetTakedDamageHint?.IsEnabled ?? false)
             {
+                if (!HintToggleManager.ok(ev.Player.UserId))
+                    goto FacilitySoundtrack;
                 message = DoReplace(_config.TargetTakedDamageHint.Message);
                 ev.Player.ShowHint(message, _config.TargetTakedDamageHint.Duration);
             }
 
+            FacilitySoundtrack:
             if (ev.Attacker.IsScp && !_config.IsHitMakerEnabledForScp)
             {
                 return;
             }
-            
             if (_config.HitMarkerSize > 1)
             {
                 ev.Attacker.ShowHitMarker(_config.HitMarkerSize);
