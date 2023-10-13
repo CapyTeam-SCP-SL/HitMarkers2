@@ -25,7 +25,7 @@ namespace HitMarkers2
         public float HitMarkerSize { get; set; } = 1f;
 
         [Description("Hint for attacker when giving damage.")]
-        public HintConfigModel AttackerDamagedTargetHint { get; set; } = new HintConfigModel
+        public HintConfigModel AttackerDamagedTarget { get; set; } = new HintConfigModel
         {
             IsEnabled = true,
             Message = @"<voffset=17em><size=20>%Damage%</size></voffset>",
@@ -33,7 +33,7 @@ namespace HitMarkers2
         };
 
         [Description("Hint for the attacker when killing a target.")]
-        public HintConfigModel AttackerKilledTargetHint { get; set; } = new HintConfigModel
+        public HintConfigModel AttackerKilledTarget { get; set; } = new HintConfigModel
         {
             IsEnabled = true,
             Message = @"<voffset=15em><size=34><color=red>\U0001F480</color></size></voffset>",
@@ -41,7 +41,7 @@ namespace HitMarkers2
         };
 
         [Description("Warning hint for the attacker when damaging to teammate.")]
-        public HintConfigModel WarningOnFriendlyFireHint = new HintConfigModel
+        public HintConfigModel WarningOnFriendlyFire { get; set; } = new HintConfigModel
         {
             IsEnabled = true,
             Message = @"%DamageHint%\n<size=34><color=yellow>Warning. Try not to hurt your teammates.</color></size>",
@@ -49,7 +49,7 @@ namespace HitMarkers2
         };
 
         [Description("Hint for target when taking damage.")]
-        public HintConfigModel TargetTakedDamageHint { get; set; } = new HintConfigModel
+        public HintConfigModel TargetTookDamage { get; set; } = new HintConfigModel
         {
             IsEnabled = false,
             Message = @"<voffset=15em><size=20>you got hit by %AttackerName%</size></voffset>",

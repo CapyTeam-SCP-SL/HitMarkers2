@@ -53,36 +53,40 @@ namespace HitMarkers2
                 return;
             }
 
-            var message = DoReplace(_config.AttackerDamagedTargetHint.Message);
+            var message = DoReplace(_config.AttackerDamagedTarget.Message);
 
             // For attacker
-            if (_config.WarningOnFriendlyFireHint.IsEnabled && ev.DamageHandler.IsFriendlyFire)
+            if (!Server.FriendlyFire && ev.Attacker.Role.Side == ev.Player.Role.Side)
             {
-                message = DoReplace(_config.WarningOnFriendlyFireHint.Message)
+                return;
+            }
+            if (_config.WarningOnFriendlyFire.IsEnabled && ev.Attacker.Role.Side == ev.Player.Role.Side)
+            {
+                message = DoReplace(_config.WarningOnFriendlyFire.Message)
                     .Replace("%DamageHint%", message);
 
                 if (!HintToggleManager.ok(ev.Attacker.UserId))
                     goto e;
 
-                ev.Attacker.ShowHint(message, _config.WarningOnFriendlyFireHint.Duration);
+                ev.Attacker.ShowHint(message, _config.WarningOnFriendlyFire.Duration);
                 Log.Debug($"Player \"{ev.Attacker.Nickname}\" ({ev.Attacker.Role}) hits the teammate \"{ev.Player.Nickname}\" ({ev.Player.Role})! Displaying a warning.");
             }
-            else if (_config.AttackerKilledTargetHint.IsEnabled)
+            else if (_config.AttackerKilledTarget.IsEnabled)
             {
                 if (!HintToggleManager.ok(ev.Attacker.UserId))
                     goto e;
-                ev.Attacker.ShowHint(message, _config.AttackerDamagedTargetHint.Duration);
+                ev.Attacker.ShowHint(message, _config.AttackerDamagedTarget.Duration);
                 Log.Debug($"Player \"{ev.Attacker.Nickname}\" attacks the player \"{ev.Player.Nickname}\"! {Math.Round(ev.Amount)} damage done");
             }
 
             e:
             // For Target
-            if (_config.TargetTakedDamageHint?.IsEnabled ?? false)
+            if (_config.TargetTookDamage?.IsEnabled ?? false)
             {
                 if (!HintToggleManager.ok(ev.Player.UserId))
                     goto FacilitySoundtrack;
-                message = DoReplace(_config.TargetTakedDamageHint.Message);
-                ev.Player.ShowHint(message, _config.TargetTakedDamageHint.Duration);
+                message = DoReplace(_config.TargetTookDamage.Message);
+                ev.Player.ShowHint(message, _config.TargetTookDamage.Duration);
             }
 
             FacilitySoundtrack:
@@ -114,11 +118,11 @@ namespace HitMarkers2
                 return;
             }
 
-            if (_config.AttackerKilledTargetHint.IsEnabled)
+            if (_config.AttackerKilledTarget.IsEnabled)
             {
-                var message = DoReplace(_config.AttackerKilledTargetHint.Message);
+                var message = DoReplace(_config.AttackerKilledTarget.Message);
 
-                ev.Attacker.ShowHint(message, _config.AttackerKilledTargetHint.Duration);
+                ev.Attacker.ShowHint(message, _config.AttackerKilledTarget.Duration);
                 Log.Debug($"Player \"{ev.Attacker.Nickname}\" ({ev.Attacker.Role}) kills the player \"{ev.Player.Nickname}\" ({ev.Player.Role}!");
             }
         }

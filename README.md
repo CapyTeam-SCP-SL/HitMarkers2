@@ -11,7 +11,7 @@
 - Friendly fire warning.
 - Making the hitmarker larger.
 - Displays the number of rounds (To be added in version 2.2.0)
-- Convenient in-game settings commands. (To be added in version 2.1.1)
+- Convenient in-game settings commands. (To be added in version 2.2.0)
 - Setting up hitmarkers (To be added in version 2.3.0).
 
 # Docs

@@ -87,7 +87,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\DisableHints.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="EventsHandler.cs" />
     <Compile Include="Features\HintConfigModel.cs" />
