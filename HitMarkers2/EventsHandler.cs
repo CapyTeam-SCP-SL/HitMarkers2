@@ -81,7 +81,7 @@ namespace HitMarkers2
 
             e:
             // For Target
-            if (_config.TargetTookDamage?.IsEnabled ?? false)
+            if (_config.TargetTookDamage.IsEnabled == true)
             {
                 if (!HintToggleManager.ok(ev.Player.UserId))
                     goto FacilitySoundtrack;

@@ -1,5 +1,5 @@
-﻿/// Work In Process
-using CommandSystem;
+﻿using CommandSystem;
+using Exiled.Permissions.Extensions;
 using HitMarkers2.Features;
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace HitMarkers2.Commands
 {
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
+    [CommandHandler(typeof(GameConsoleCommandHandler))]
     internal class DisableHints : ICommand
     {
         public string Command { get; } = "disableHints";
@@ -18,9 +19,15 @@ namespace HitMarkers2.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
+            if (!((CommandSender)sender).CheckPermission("HM.DisableHints"))
+            {
+                response = "You do not have permission to use this command";
+                return false;
+            }
             if (arguments.Count == 0)
             {
                 HintToggleManager.de();
+
                 response = "success, globally disabled!";
                 return true;
             }
@@ -49,6 +56,7 @@ namespace HitMarkers2.Commands
     }
 
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
+    [CommandHandler(typeof(GameConsoleCommandHandler))]
     internal class EnableHints : ICommand
     {
         public string Command { get; } = "enableHints";
@@ -57,6 +65,11 @@ namespace HitMarkers2.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
+            if (!((CommandSender)sender).CheckPermission("HM.EnableHints"))
+            {
+                response = "You do not have permission to use this command";
+                return false;
+            }
             if (arguments.Count == 0)
             {
                 HintToggleManager.ee();
