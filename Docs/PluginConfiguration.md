@@ -10,35 +10,45 @@ HitMarkers2:
   # Should debug logs be enabled?
   debug: false
   # Should Welcome Message be enabled?
-  enable_welcome_message: true
-  # Should a hint be displayed to the attacker?
-  enable_attacker_hint: true
-  # Hint message for attacker
-  hint_attacker_message: '<voffset=17em><size=20>%Damage%</size></voffset>'
-  # Hint duration for attacker
-  hint_attacker_duration: 0.699999988
-  # Should a hint be displayed to the target?
-  enable_target_hint: false
-  # Hint message for target
-  hint_target_message: '<voffset=15em><size=20>you got hit by %AttackerName%</size></voffset>'
-  # Hint duration for target
-  hint_target_duration: 0.699999988
-  # Should a hint be displayed to the attacker when they kill a player?
-  enable_kill_hint: true
-  # Hint message for kill
-  kill_hint_message: '<voffset=15em><size=34><color=red>\U0001F480</color></size></voffset>'
-  # Hint duration for kill message
-  kill_hint_duration: 1
+  is_welcome_message_enabled: true
+  # Are hints globally enabled by default?
+  are_hints_enabled: true
   # Should hitmarkers be displayed to SCPs?
-  enable_scp_hints: true
-  # Should Friendly Fire Warning be displayed?
-  enable_friendly_fire_warning: true
-  # Hint message for Friendly Fire Warning
-  friendly_fire_warning_message: '%DamageHint%\n<size=34><color=yellow>Warning. Try not to hurt your teammates.</color></size>'
-  # Hint duration for Friendly Fire Warning message
-  friendly_fire_warning_hint_duration: 1
+  is_hit_maker_enabled_for_scp: true
   # Size of custom hitmarker (leave 1 for default)
   hit_marker_size: 1
+  # Hint for attacker when giving damage.
+  attacker_damaged_target:
+  # Should a hint be displayed?
+    is_enabled: true
+    # Content of the Hint to be displayed.
+    message: '<voffset=17em><size=20>%Damage%</size></voffset>'
+    # Hint display duration.
+    duration: 0.699999988
+  # Hint for the attacker when killing a target.
+  attacker_killed_target:
+  # Should a hint be displayed?
+    is_enabled: true
+    # Content of the Hint to be displayed.
+    message: '<voffset=15em><size=34><color=red>\U0001F480</color></size></voffset>'
+    # Hint display duration.
+    duration: 1
+  # Warning hint for the attacker when damaging to teammate.
+  warning_on_friendly_fire:
+  # Should a hint be displayed?
+    is_enabled: true
+    # Content of the Hint to be displayed.
+    message: '%DamageHint%\n<size=34><color=yellow>Warning. Try not to hurt your teammates.</color></size>'
+    # Hint display duration.
+    duration: 1
+  # Hint for target when taking damage.
+  target_took_damage:
+  # Should a hint be displayed?
+    is_enabled: false
+    # Content of the Hint to be displayed.
+    message: '<voffset=15em><size=20>you got hit by %AttackerName%</size></voffset>'
+    # Hint display duration.
+    duration: 0.699999988
 ```
 
 \U0001F480 = skull emoji
