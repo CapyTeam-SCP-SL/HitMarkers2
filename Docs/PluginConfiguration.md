@@ -78,6 +78,6 @@ These are for `friendly_fire_warning_message` config
 | --- | --- |
 | `%AttackerName%` | Attacker username |
 | `%AttackerRole%` | Attacker role |
-| `%Damage%` | Damage delt |
+| `%Damage%` | Damage dealt |
 | `%DamageHint%` | Damage Hint from hint_attacker_message |
 | `\n` | Makes a linebreak in the hint |
