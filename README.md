@@ -15,8 +15,9 @@
 - Advanced tips for hitting and shooting.
 - Displaying the cartridge counter. (To be added in version 2.2.0)
 - Convenient in-game settings commands. (To be added in version 2.2.1)
+- Convenient customization of hit marker and hint styles. (To be added in version 2.2.0)
 - Setting up hitmarkers (To be added in version 2.3.0).
-- A system for adding your own hit markers.
+- A system for adding your own hit markers. (To be added in version 2.3.0)
 
 # Docs
 - [Installation](https://github.com/CapyTeam-SCP-SL/HitMarkers2/blob/main/Docs/Installation.md#installation)
