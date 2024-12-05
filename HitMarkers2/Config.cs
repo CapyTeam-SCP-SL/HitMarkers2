@@ -1,5 +1,6 @@
 ﻿using Exiled.API.Interfaces;
 using HitMarkers2.Features;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace HitMarkers2
@@ -28,7 +29,6 @@ namespace HitMarkers2
         public HintConfigModel AttackerDamagedTarget { get; set; } = new HintConfigModel
         {
             IsEnabled = true,
-            Message = @"<voffset=17em><size=20>%Damage%</size></voffset>",
             Duration = 0.7F,
         };
 
@@ -36,7 +36,6 @@ namespace HitMarkers2
         public HintConfigModel AttackerKilledTarget { get; set; } = new HintConfigModel
         {
             IsEnabled = true,
-            Message = @"<voffset=15em><size=34><color=red>\U0001F480</color></size></voffset>",
             Duration = 1.0F,
         };
 
@@ -44,7 +43,6 @@ namespace HitMarkers2
         public HintConfigModel WarningOnFriendlyFire { get; set; } = new HintConfigModel
         {
             IsEnabled = true,
-            Message = @"%DamageHint%\n<size=34><color=yellow>Warning. Try not to hurt your teammates.</color></size>",
             Duration = 1.0F,
         };
 
@@ -52,8 +50,19 @@ namespace HitMarkers2
         public HintConfigModel TargetTookDamage { get; set; } = new HintConfigModel
         {
             IsEnabled = false,
-            Message = @"<voffset=15em><size=20>you got hit by %AttackerName%</size></voffset>",
             Duration = 0.7F,
+        };
+
+        [Description("Hint for target when taking damage.")]
+        public CounterConfigModel AmmoCounterSettings { get; set; } = new CounterConfigModel
+        {
+            IsEnabled = false,
+            UpdateTime = 0.1f,
+            AmmoCounterSize = 35f,
+            AmmoCounterPosX = -620f,
+            AmmoCounterPosY = -348f,
+            AmmoCounterPosLink = "left",
+            AmmoCounterDesign = "<color=%player_role_color%><b>🧨 | %current_ammo% / %max_ammo%</b></color>"
         };
     }
 }
