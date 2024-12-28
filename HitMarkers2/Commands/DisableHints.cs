@@ -1,6 +1,7 @@
 ﻿using CommandSystem;
 using Exiled.Permissions.Extensions;
 using HitMarkers2.Features;
+using PluginAPI.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace HitMarkers2.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!((CommandSender)sender).CheckPermission("HM.DisableHints"))
+            if (!sender.CheckPermission("HM.DisableHints"))
             {
                 response = "You do not have permission to use this command";
                 return false;

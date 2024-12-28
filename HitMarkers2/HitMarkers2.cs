@@ -12,8 +12,8 @@ namespace HitMarkers2
         public override string Name { get; } = "HitMarkers 2";
         public override string Author { get; } = "CapyTeam";
         public override string Prefix { get; } = "HitMarkers2";
-        public override Version Version { get; } = new Version(2, 1, 2);
-        public override Version RequiredExiledVersion { get; } = new Version(8, 3, 4);
+        public override Version Version { get; } = new Version(2, 2, 1);
+        public override Version RequiredExiledVersion { get; } = new Version(9, 1, 0);
 
         public override void OnEnabled()
         {
